@@ -7,14 +7,14 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private TextAsset textAsset;
     [SerializeField]
-    private List<ShopItemData> shopItemDatas = new List<ShopItemData>();
+    public List<ShopItemData> shopItemDatas = new List<ShopItemData>();
     // Start is called before the first frame update
     void Start()
     {
-        LoadShopItemData();
+        // LoadShopItemData();
     }
 
-    void LoadShopItemData(){
+    public void LoadShopItemData(){
         Debug.Log(textAsset.text);
         JSONNode jsonData = JSON.Parse(textAsset.text);
         // SaveToJsonFile(webData.downloadHandler.text);
