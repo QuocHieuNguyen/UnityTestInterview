@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using SimpleJSON;
+using System;
+
 public class DataManager : MonoBehaviour
 {
     [SerializeField]
@@ -30,5 +33,26 @@ public class DataManager : MonoBehaviour
             );
             shopItemDatas.Add(shopItemData);
         }
+    }
+    public Texture2D LoadImageByName(string name,  Action onImageReady = null){
+        // string savedPath = Application.dataPath + "/Resources/ShopItems/" + name +".png";
+        var texture = Resources.Load<Texture2D>("ShopItems/" + name);
+        if (texture){
+            Debug.Log("The card image file exists");
+            Texture2D texture2D = texture;
+            if (onImageReady != null)
+                onImageReady();
+            return texture2D;
+        }else{
+            Debug.Log("There is no card image file");
+            return null;
+        }
+    }
+    Texture2D LoadFromFile(string path){
+        byte [] fileData = File.ReadAllBytes(path);
+        Texture2D texture = new Texture2D(200,200);
+        texture.LoadImage(fileData);
+        Debug.Log("Load Image from File");
+        return texture;
     }
 }

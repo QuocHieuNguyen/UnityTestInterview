@@ -10,6 +10,7 @@ public class ShopItemData
     public string title;
     public string description;
     public string price;
+    public Sprite sprite;
 
     public ShopItemData(string id, string icon, string title, string desc, string price){
         this.id = id;
@@ -17,5 +18,8 @@ public class ShopItemData
         this.title = title;
         this.description = desc;
         this.price = price;
+    }
+    public void SetSprite(Sprite sprite){
+        this.sprite = sprite;
     }
 }
