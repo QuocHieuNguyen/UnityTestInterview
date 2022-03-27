@@ -12,9 +12,9 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     public List<ShopItemData> shopItemDatas = new List<ShopItemData>();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        // LoadShopItemData();
+
     }
 
     public void LoadShopItemData(){
@@ -31,6 +31,11 @@ public class DataManager : MonoBehaviour
                 shopItemsDataJson[i]["desc"],
                 shopItemsDataJson[i]["price"]
             );
+            Texture2D itemImageTexture = LoadImageByName(shopItemsDataJson[i]["icon"]);
+            // Create sprite from texture2D
+            Rect rec = new Rect(0, 0, 90, 89);
+            Sprite sprite =Sprite.Create(itemImageTexture,rec,new Vector2(0.5f,0.5f),100);
+            shopItemData.SetSprite(sprite);
             shopItemDatas.Add(shopItemData);
         }
     }
@@ -48,11 +53,11 @@ public class DataManager : MonoBehaviour
             return null;
         }
     }
-    Texture2D LoadFromFile(string path){
-        byte [] fileData = File.ReadAllBytes(path);
-        Texture2D texture = new Texture2D(200,200);
-        texture.LoadImage(fileData);
-        Debug.Log("Load Image from File");
-        return texture;
-    }
+    // Texture2D LoadFromFile(string path){
+    //     byte [] fileData = File.ReadAllBytes(path);
+    //     Texture2D texture = new Texture2D(200,200);
+    //     texture.LoadImage(fileData);
+    //     Debug.Log("Load Image from File");
+    //     return texture;
+    // }
 }
